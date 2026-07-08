@@ -51,9 +51,9 @@ function isActiveSection(key) {
     <aside class="w-64 shrink-0 bg-navy-900 text-white flex flex-col">
       <div class="px-5 py-5 flex items-center gap-2.5 border-b border-white/10">
         <div class="w-8 h-8 rounded-lg flex items-center justify-center font-display font-bold text-sm"
-             style="background: linear-gradient(135deg, #46ad64, #22d3ee);">N</div>
+             style="background: linear-gradient(135deg, #46ad64, #22d3ee);">S</div>
         <div class="leading-none">
-          <div class="font-display font-bold text-sm">Nexus CMS</div>
+          <div class="font-display font-bold text-sm">SKT CMS</div>
           <div class="text-[10px] text-white/40 uppercase tracking-wide mt-0.5">Admin Panel</div>
         </div>
       </div>

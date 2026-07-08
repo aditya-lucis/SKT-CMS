@@ -31,8 +31,8 @@ async function onSubmit() {
     <div class="w-full max-w-sm">
       <div class="text-center mb-8">
         <div class="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center font-display font-bold text-white text-xl"
-             style="background: linear-gradient(135deg, #053063, #46ad64);">N</div>
-        <h1 class="font-display font-bold text-white text-xl">Nexus CMS</h1>
+             style="background: linear-gradient(135deg, #053063, #46ad64);">S</div>
+        <h1 class="font-display font-bold text-white text-xl">SKT CMS</h1>
         <p class="text-navy-300 text-sm mt-1">Masuk untuk kelola konten website</p>
       </div>
 
