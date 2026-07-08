@@ -31,7 +31,7 @@ const unreadCount = () => submissions.value.filter((s) => !s.is_read).length
 <template>
   <div>
     <h1 class="text-xl font-display font-bold text-navy-900 mb-1">Dashboard</h1>
-    <p class="text-sm text-navy-500 mb-6">Ringkasan konten website Nexus Technology.</p>
+    <p class="text-sm text-navy-500 mb-6">Ringkasan konten website SKT CMS.</p>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
       <RouterLink v-for="(cfg, key) in resourceConfigs" :key="key"

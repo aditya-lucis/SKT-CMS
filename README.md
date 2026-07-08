@@ -1,4 +1,4 @@
-# Nexus Technology — Company Profile + CMS
+# SKT CMS — Company Profile + CMS
 
 Tiga project yang saling terhubung:
 

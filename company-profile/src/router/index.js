@@ -9,7 +9,7 @@ const routes = [
         path: '',
         name: 'home',
         component: () => import('@/pages/Home.vue'),
-        meta: { title: 'Nexus Technology — Building The Future' },
+        meta: { title: 'SKT CMS — Building The Future' },
       },
     ],
   },

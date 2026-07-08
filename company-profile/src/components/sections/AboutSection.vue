@@ -37,7 +37,7 @@ watch(() => state.data.stats.length, async () => {
           <div class="relative rounded-3xl overflow-hidden gradient-border shadow-glass-lg h-[400px] md:h-[440px]">
             <div class="absolute left-0 w-full will-change-transform" style="top: -10%; height: 120%;"
                  data-parallax data-parallax-speed="0.14" data-parallax-scale="1.1">
-              <img :src="resolveMediaUrl(about.office_image)" alt="Nexus Technology office" class="w-full h-full object-cover" loading="lazy" />
+              <img :src="resolveMediaUrl(about.office_image)" alt="SKT office" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 50%, rgba(5,48,99,0.4) 100%);"></div>
             <!-- Floating badge -->

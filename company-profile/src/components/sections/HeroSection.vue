@@ -111,7 +111,7 @@ const scrollToNext = () => {
                 <Sparkles :size="18" class="text-white" />
               </div>
               <div>
-                <div class="text-white font-semibold text-sm">Nexus AI Lab</div>
+                <div class="text-white font-semibold text-sm">SKT AI Lab</div>
                 <div class="text-white/60 text-xs">Shipping production AI</div>
               </div>
             </div>

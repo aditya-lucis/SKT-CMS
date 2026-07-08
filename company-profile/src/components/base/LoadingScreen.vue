@@ -41,7 +41,7 @@ onBeforeUnmount(() => { if (raf) cancelAnimationFrame(raf) })
       <div class="relative">
         <div class="absolute inset-0 -m-8 rounded-full opacity-60 blur-2xl animate-pulse"
              style="background: conic-gradient(from 0deg, #46ad64, #22d3ee, #8b5cf6, #46ad64); animation: spin 4s linear infinite;"></div>
-        <img src="@/assets/images/logo.png" alt="Nexus Technology"
+        <img src="@/assets/images/logo.png" alt="SKT"
              class="relative w-28 h-28 md:w-36 md:h-36 object-contain drop-shadow-2xl"
              :class="{ 'logo-enter': true }" />
       </div>
@@ -49,10 +49,10 @@ onBeforeUnmount(() => { if (raf) cancelAnimationFrame(raf) })
       <!-- Wordmark -->
       <div class="text-center">
         <h1 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-navy-700">
-          NEXUS<span class="text-emerald-brand-400">.</span>
+          SKT<span class="text-emerald-brand-400">.</span>
         </h1>
         <p class="font-mono text-[11px] md:text-xs uppercase tracking-[0.4em] text-slate-500 mt-1">
-          Technology Group
+          CMS
         </p>
       </div>
 

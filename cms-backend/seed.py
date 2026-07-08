@@ -31,7 +31,7 @@ def upsert_section(section: str, data: dict):
 
 # ---------------------------------------------------------------- SECTIONS
 upsert_section("site_settings", {
-    "company_name": "Nexus Technology",
+    "company_name": "SKT",
     "tagline": "Building The Future Through Innovation & Technology",
     "email": "hello@nexustech.io",
     "phone": "+1 (415) 555-0199",
@@ -43,8 +43,8 @@ upsert_section("site_settings", {
         {"name": "Instagram", "icon": "Instagram", "href": "#"},
         {"name": "YouTube", "icon": "Youtube", "href": "#"},
     ],
-    "meta_title": "Nexus Technology — Software, ERP, HIS, Cloud & AI Solutions",
-    "meta_description": "Nexus Technology builds custom software, ERP, hospital information systems, cloud, and AI solutions for ambitious companies worldwide.",
+    "meta_title": "SKT CMS — Software, ERP, HIS, Cloud & AI Solutions",
+    "meta_description": "SKT builds custom software, ERP, hospital information systems, cloud, and AI solutions for ambitious companies worldwide.",
 })
 
 upsert_section("hero", {
@@ -61,10 +61,10 @@ upsert_section("hero", {
 })
 
 upsert_section("about", {
-    "eyebrow": "About Nexus",
+    "eyebrow": "About SKT",
     "title": "We engineer software that",
     "highlight_word": "moves the needle",
-    "subtitle": "Since 2013, Nexus Technology has partnered with ambitious companies to design, build, and scale the software that runs their business.",
+    "subtitle": "Since 2013, SKT has partnered with ambitious companies to design, build, and scale the software that runs their business.",
     "office_image": img("1497366216548-37526070297c", 1200),
     "highlights": [
         "Senior-only engineering pods",
@@ -142,7 +142,7 @@ for i, ms in enumerate([
      "desc": "Shipped a supply-chain platform that processed $1.2B in transactions in year one."},
     {"year": "2019", "title": "Expanded to 4 continents",
      "desc": "Opened studios in Singapore, London, and Jakarta — global delivery, local presence."},
-    {"year": "2022", "title": "Launched Nexus AI Lab",
+    {"year": "2022", "title": "Launched SKT AI Lab",
      "desc": "Dedicated research lab shipping production AI — from copilots to vision systems."},
     {"year": "2025", "title": "320+ projects, 96% retention",
      "desc": "Trusted by category leaders to deliver the work that defines their next decade."},
@@ -205,15 +205,15 @@ for i, t in enumerate([
 
 reset(m.Testimonial)
 for i, ts in enumerate([
-    {"quote": "Nexus didn't just deliver software — they re-architected how our entire engineering org thinks about quality. The platform they built now processes $4B annually with 99.99% uptime.",
+    {"quote": "SKT didn't just deliver software — they re-architected how our entire engineering org thinks about quality. The platform they built now processes $4B annually with 99.99% uptime.",
      "name": "Catherine Lim", "role": "CEO, Vertex Financial", "img": img("1494790108377-be9c29b29330", 200), "rating": 5},
-    {"quote": "We engaged Nexus to rescue a stalled ERP migration. Six months later, we were live across 14 countries. The ROI was visible in the first quarter post-launch.",
+    {"quote": "We engaged SKT to rescue a stalled ERP migration. Six months later, we were live across 14 countries. The ROI was visible in the first quarter post-launch.",
      "name": "Roberto Sanchez", "role": "COO, Meridian Industries", "img": img("1507003211169-0a1dd7228f2d", 200), "rating": 5},
-    {"quote": "The AI copilot Nexus shipped for us transformed support operations. Average handle time dropped 38%. Our agents love it. Our customers love it. Our board really loves it.",
+    {"quote": "The AI copilot SKT shipped for us transformed support operations. Average handle time dropped 38%. Our agents love it. Our customers love it. Our board really loves it.",
      "name": "Priya Nair", "role": "CPO, Helio Health", "img": img("1573496359142-b8d87734a5a2", 200), "rating": 5},
-    {"quote": "I've worked with a dozen agencies. None come close to Nexus on craft, candor, and consistency. They are simply the best engineering partner we've ever had.",
+    {"quote": "I've worked with a dozen agencies. None come close to SKT on craft, candor, and consistency. They are simply the best engineering partner we've ever had.",
      "name": "Thomas Wright", "role": "CTO, Cascade Retail", "img": img("1519085360753-af0119f7cbe7", 200), "rating": 5},
-    {"quote": "Nexus rebuilt our patient records system in 9 months. It now serves 2.4M patients and has won two industry awards for usability. They are extraordinary.",
+    {"quote": "SKT rebuilt our patient records system in 9 months. It now serves 2.4M patients and has won two industry awards for usability. They are extraordinary.",
      "name": "Dr. Amara Okafor", "role": "CMIO, Lakeside Health", "img": img("1531123897727-8f129e1688ce", 200), "rating": 5},
 ]):
     db.add(m.Testimonial(order_index=i, **ts))
@@ -245,7 +245,7 @@ for i, bp in enumerate([
 
 reset(m.Faq)
 for i, f in enumerate([
-    {"q": "What size engagements does Nexus typically take on?",
+    {"q": "What size engagements does SKT typically take on?",
      "a": "We work best on engagements ranging from $250k to $5M+. Smaller projects are considered when there's a clear path to a longer partnership or when the work is particularly interesting. For very small budgets, we happily refer to trusted boutique partners in our network."},
     {"q": "How quickly can you start?",
      "a": "For standard engagements, we typically mobilize a squad within 2–4 weeks of signed SOW. For urgent rescues or staff augmentation, we can have senior engineers on the ground in 5 business days. Larger teams (8+) usually take 6 weeks to assemble properly."},

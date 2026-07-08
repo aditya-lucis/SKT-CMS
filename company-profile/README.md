@@ -1,8 +1,8 @@
-# Nexus Technology — Premium Company Profile Website
+# SKT CMS — Premium Company Profile Website
 
 Website perusahaan premium berteknologi tinggi yang dibangun dengan **Vue 3 + Vite + Tailwind CSS v4 + GSAP + Lenis**. Kualitas visual setara Stripe, Vercel, Apple, Linear, Framer, dan Nvidia.
 
-![Nexus Technology](public/logo.png)
+![SKT CMS](public/logo.svg)
 
 ---
 
@@ -231,7 +231,7 @@ Project memuat gambar dari `images.unsplash.com`. Pastikan komputer Anda terhubu
 
 ## License
 
-Project ini dibuat untuk keperluan demo Nexus Technology. Bebas dimodifikasi sesuai kebutuhan.
+Project ini dibuat untuk keperluan demo SKT CMS. Bebas dimodifikasi sesuai kebutuhan.
 
 ---
 

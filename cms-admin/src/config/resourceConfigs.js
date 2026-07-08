@@ -191,7 +191,7 @@ export const singletonConfigs = {
     subtitle: 'Konten di section About.',
     section: 'about',
     fields: [
-      { key: 'eyebrow', label: 'Eyebrow text', type: 'text', placeholder: 'About Nexus' },
+      { key: 'eyebrow', label: 'Eyebrow text', type: 'text', placeholder: 'About SKT' },
       { key: 'title', label: 'Title', type: 'text' },
       { key: 'highlight_word', label: 'Highlight word (warna beda di title)', type: 'text' },
       { key: 'subtitle', label: 'Subtitle', type: 'textarea', rows: 3 },

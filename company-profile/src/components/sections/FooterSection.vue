@@ -72,10 +72,10 @@ const go = (href) => {
         <!-- Brand -->
         <div class="col-span-2 lg:col-span-2">
           <a href="#home" @click.prevent="go('#home')" class="flex items-center gap-2.5 mb-5">
-            <img src="@/assets/images/logo.png" alt="Nexus Technology" class="w-10 h-10 object-contain" />
+            <img src="@/assets/images/logo.png" alt="SKT" class="w-10 h-10 object-contain" />
             <div class="leading-none">
-              <div class="font-display font-bold text-lg text-white">Nexus<span class="text-emerald-brand-400">.</span></div>
-              <div class="font-mono text-[9px] uppercase tracking-[0.25em] text-white/50">Tech Group</div>
+              <div class="font-display font-bold text-lg text-white">SKT<span class="text-emerald-brand-400">.</span></div>
+              <div class="font-mono text-[9px] uppercase tracking-[0.25em] text-white/50">CMS</div>
             </div>
           </a>
           <p class="text-sm text-white/60 leading-relaxed max-w-sm mb-5">

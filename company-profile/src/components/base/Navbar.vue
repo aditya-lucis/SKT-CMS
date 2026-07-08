@@ -46,12 +46,12 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
           <div class="relative">
             <div class="absolute inset-0 rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity"
                  style="background: linear-gradient(120deg, #053063, #46ad64);"></div>
-            <img src="@/assets/images/logo.png" alt="Nexus Technology"
+            <img src="@/assets/images/logo.png" alt="SKT"
                  class="relative w-9 h-9 object-contain" />
           </div>
           <div class="leading-none">
-            <div class="font-display font-bold text-base text-navy-700">Nexus<span class="text-emerald-brand-400">.</span></div>
-            <div class="font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">Tech Group</div>
+            <div class="font-display font-bold text-base text-navy-700">SKT<span class="text-emerald-brand-400">.</span></div>
+            <div class="font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">CMS</div>
           </div>
         </a>
 

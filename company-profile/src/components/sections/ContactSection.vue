@@ -69,7 +69,7 @@ const budgets = ['< $50k', '$50k – $250k', '$250k – $1M', '> $1M', 'Not sure
           <!-- Map placeholder -->
           <div class="relative rounded-3xl overflow-hidden glass-dark h-64">
             <iframe
-              title="Nexus Technology HQ"
+              title="SKT HQ"
               src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4017%2C37.7900%2C-122.3917%2C37.8000&layer=mapnik&marker=37.7950%2C-122.3967"
               class="w-full h-full grayscale opacity-80"
               loading="lazy"
