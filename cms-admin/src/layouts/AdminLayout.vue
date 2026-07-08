@@ -8,6 +8,8 @@ import {
 import { useAuthStore } from '@/stores/auth'
 import { singletonConfigs } from '@/config/resourceConfigs'
 
+import { ref } from 'vue'
+
 const router = useRouter()
 const route = useRoute()
 const auth = useAuthStore()
@@ -37,6 +39,12 @@ const resourceNav = [
   { key: 'trustedBy', label: 'Trusted By', icon: ImageIcon },
 ]
 
+const mobileOpen = ref(false)
+
+function toggleMobile() {
+  mobileOpen.value = !mobileOpen.value
+}
+
 function isActiveResource(key) {
   return route.name === 'resource' && route.params.resource === key
 }
@@ -46,68 +54,83 @@ function isActiveSection(key) {
 </script>
 
 <template>
-  <div class="min-h-screen flex">
-    <!-- Sidebar -->
-    <aside class="w-64 shrink-0 bg-navy-900 text-white flex flex-col">
-      <div class="px-5 py-5 flex items-center gap-2.5 border-b border-white/10">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center font-display font-bold text-sm"
-             style="background: linear-gradient(135deg, #46ad64, #22d3ee);">S</div>
-        <div class="leading-none">
-          <div class="font-display font-bold text-sm">SKT CMS</div>
-          <div class="text-[10px] text-white/40 uppercase tracking-wide mt-0.5">Admin Panel</div>
+  <div class="min-h-screen flex flex-col bg-slate-50">
+    <!-- Top Navbar -->
+    <header class="bg-white border-b">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center font-display font-bold text-sm"
+               style="background: linear-gradient(135deg, #46ad64, #22d3ee);">S</div>
+          <div>
+            <div class="font-display font-bold text-lg text-navy-900">SKT CMS</div>
+            <div class="text-xs text-navy-500">Admin Panel</div>
+          </div>
         </div>
-      </div>
 
-      <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
-        <div>
+        <nav class="hidden md:flex items-center gap-4">
           <RouterLink :to="{ name: 'dashboard' }"
-                      class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
-                      :class="route.name === 'dashboard' ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'">
-            <LayoutDashboard :size="16" /> Dashboard
-          </RouterLink>
-        </div>
+                      class="px-3 py-2 rounded text-sm font-medium text-navy-700 hover:bg-slate-100 transition-colors"
+                      :class="route.name === 'dashboard' ? 'bg-slate-100' : ''">Dashboard</RouterLink>
 
-        <div>
-          <div class="px-3 text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5">Page Content</div>
-          <RouterLink v-for="item in contentNav" :key="item.key"
-                      :to="{ name: 'content', params: { section: item.key } }"
-                      class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
-                      :class="isActiveSection(item.key) ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'">
-            <component :is="item.icon" :size="16" /> {{ item.label }}
-          </RouterLink>
-        </div>
+          <div class="relative group">
+            <button class="px-3 py-2 rounded text-sm font-medium text-navy-700 hover:bg-slate-100 transition-colors">Page Content</button>
+            <div class="absolute left-0 mt-2 w-48 bg-white border rounded shadow-md p-2 hidden group-hover:block z-50">
+              <RouterLink v-for="item in contentNav" :key="item.key"
+                          :to="{ name: 'content', params: { section: item.key } }"
+                          class="flex items-center gap-2 px-2 py-2 text-sm text-navy-700 hover:bg-slate-50 rounded">
+                <component :is="item.icon" :size="14" /> {{ item.label }}
+              </RouterLink>
+            </div>
+          </div>
 
-        <div>
-          <div class="px-3 text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5">Content Lists</div>
-          <RouterLink v-for="item in resourceNav" :key="item.key"
-                      :to="{ name: 'resource', params: { resource: item.key } }"
-                      class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
-                      :class="isActiveResource(item.key) ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'">
-            <component :is="item.icon" :size="16" /> {{ item.label }}
-          </RouterLink>
-        </div>
+          <div class="relative group">
+            <button class="px-3 py-2 rounded text-sm font-medium text-navy-700 hover:bg-slate-100 transition-colors">Content Lists</button>
+            <div class="absolute left-0 mt-2 w-56 bg-white border rounded shadow-md p-2 hidden group-hover:block z-50">
+              <RouterLink v-for="item in resourceNav" :key="item.key"
+                          :to="{ name: 'resource', params: { resource: item.key } }"
+                          class="flex items-center gap-2 px-2 py-2 text-sm text-navy-700 hover:bg-slate-50 rounded">
+                <component :is="item.icon" :size="14" /> {{ item.label }}
+              </RouterLink>
+            </div>
+          </div>
+        </nav>
 
-        <div>
-          <div class="px-3 text-[10px] font-bold uppercase tracking-wider text-white/30 mb-1.5">Lainnya</div>
-          <RouterLink :to="{ name: 'contact-submissions' }"
-                      class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
-                      :class="route.name === 'contact-submissions' ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'">
-            <Mail :size="16" /> Pesan Masuk
-          </RouterLink>
-        </div>
-      </nav>
+        <div class="flex items-center gap-3">
+          <div class="hidden md:block text-sm text-navy-700">Masuk sebagai <b class="ml-2">{{ auth.state.username }}</b></div>
+          <button @click="logout" class="px-3 py-2 rounded text-sm text-emerald-600 border border-emerald-100 hidden md:inline-flex items-center gap-2">Keluar</button>
 
-      <div class="px-3 py-4 border-t border-white/10">
-        <div class="px-3 text-xs text-white/40 mb-2">Masuk sebagai <b class="text-white/70">{{ auth.state.username }}</b></div>
-        <button @click="logout" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/5 w-full transition-colors">
-          <LogOut :size="16" /> Keluar
-        </button>
+          <!-- Mobile toggle -->
+          <button @click="toggleMobile" class="md:hidden w-10 h-10 rounded-lg flex items-center justify-center bg-slate-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-navy-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
       </div>
-    </aside>
+
+      <!-- Mobile menu -->
+      <div v-if="mobileOpen" class="md:hidden border-t bg-white">
+        <div class="px-4 py-3 space-y-2">
+          <RouterLink :to="{ name: 'dashboard' }" class="block px-3 py-2 rounded text-navy-700">Dashboard</RouterLink>
+          <div>
+            <div class="text-xs text-navy-500 uppercase font-semibold mb-1">Page Content</div>
+            <RouterLink v-for="item in contentNav" :key="item.key"
+                        :to="{ name: 'content', params: { section: item.key } }"
+                        class="block px-3 py-2 text-navy-700 rounded">{{ item.label }}</RouterLink>
+          </div>
+          <div>
+            <div class="text-xs text-navy-500 uppercase font-semibold mb-1 mt-2">Content Lists</div>
+            <RouterLink v-for="item in resourceNav" :key="item.key"
+                        :to="{ name: 'resource', params: { resource: item.key } }"
+                        class="block px-3 py-2 text-navy-700 rounded">{{ item.label }}</RouterLink>
+          </div>
+          <RouterLink :to="{ name: 'contact-submissions' }" class="block px-3 py-2 text-navy-700 rounded">Pesan Masuk</RouterLink>
+          <button @click="logout" class="w-full text-left px-3 py-2 rounded text-navy-700">Keluar</button>
+        </div>
+      </div>
+    </header>
 
     <!-- Main content -->
     <main class="flex-1 overflow-y-auto">
-      <div class="max-w-5xl mx-auto px-8 py-8">
+      <div class="max-w-6xl mx-auto px-6 py-8">
         <RouterView />
       </div>
     </main>
