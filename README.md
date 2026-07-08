@@ -15,9 +15,9 @@ Alurnya: **Admin edit konten di `cms-admin` → tersimpan di MySQL lewat `cms-ba
 ## 1. Setup Database (MySQL/MariaDB)
 
 ```sql
-CREATE DATABASE nexus_cms CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'nexus_user'@'localhost' IDENTIFIED BY 'ganti_password_ini';
-GRANT ALL PRIVILEGES ON nexus_cms.* TO 'nexus_user'@'localhost';
+CREATE DATABASE skt_cms CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'skt_user'@'localhost' IDENTIFIED BY 'ganti_password_ini';
+GRANT ALL PRIVILEGES ON skt_cms.* TO 'skt_user'@'localhost';
 FLUSH PRIVILEGES;
 ```
 

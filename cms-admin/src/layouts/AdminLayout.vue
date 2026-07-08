@@ -40,9 +40,14 @@ const resourceNav = [
 ]
 
 const mobileOpen = ref(false)
+const openDropdown = ref(null)
 
 function toggleMobile() {
   mobileOpen.value = !mobileOpen.value
+}
+
+function toggleDropdown(name) {
+  openDropdown.value = openDropdown.value === name ? null : name
 }
 
 function isActiveResource(key) {
@@ -69,12 +74,16 @@ function isActiveSection(key) {
 
         <nav class="hidden md:flex items-center gap-4">
           <RouterLink :to="{ name: 'dashboard' }"
-                      class="px-3 py-2 rounded text-sm font-medium text-navy-700 hover:bg-slate-100 transition-colors"
-                      :class="route.name === 'dashboard' ? 'bg-slate-100' : ''">Dashboard</RouterLink>
+                      class="px-3 py-2 text-sm font-medium text-navy-700 transition-colors"
+                      :class="{ 'text-emerald-600 border-b-2 border-emerald-300': route.name === 'dashboard' }">Dashboard</RouterLink>
 
-          <div class="relative group">
-            <button class="px-3 py-2 rounded text-sm font-medium text-navy-700 hover:bg-slate-100 transition-colors">Page Content</button>
-            <div class="absolute left-0 mt-2 w-48 bg-white border rounded shadow-md p-2 hidden group-hover:block z-50">
+          <div class="relative">
+            <button @click="toggleDropdown('content')"
+                    class="px-3 py-2 text-sm font-medium transition-colors"
+                    :class="{ 'text-emerald-600 border-b-2 border-emerald-300': route.name === 'content' || openDropdown === 'content' }">
+              Page Content
+            </button>
+            <div v-show="openDropdown === 'content'" class="absolute left-0 mt-2 w-48 bg-white border rounded shadow-md p-2 z-50">
               <RouterLink v-for="item in contentNav" :key="item.key"
                           :to="{ name: 'content', params: { section: item.key } }"
                           class="flex items-center gap-2 px-2 py-2 text-sm text-navy-700 hover:bg-slate-50 rounded">
@@ -83,9 +92,13 @@ function isActiveSection(key) {
             </div>
           </div>
 
-          <div class="relative group">
-            <button class="px-3 py-2 rounded text-sm font-medium text-navy-700 hover:bg-slate-100 transition-colors">Content Lists</button>
-            <div class="absolute left-0 mt-2 w-56 bg-white border rounded shadow-md p-2 hidden group-hover:block z-50">
+          <div class="relative">
+            <button @click="toggleDropdown('lists')"
+                    class="px-3 py-2 text-sm font-medium transition-colors"
+                    :class="{ 'text-emerald-600 border-b-2 border-emerald-300': route.name === 'resource' || openDropdown === 'lists' }">
+              Content Lists
+            </button>
+            <div v-show="openDropdown === 'lists'" class="absolute left-0 mt-2 w-56 bg-white border rounded shadow-md p-2 z-50">
               <RouterLink v-for="item in resourceNav" :key="item.key"
                           :to="{ name: 'resource', params: { resource: item.key } }"
                           class="flex items-center gap-2 px-2 py-2 text-sm text-navy-700 hover:bg-slate-50 rounded">
