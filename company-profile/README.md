@@ -2,7 +2,7 @@
 
 Website perusahaan premium berteknologi tinggi yang dibangun dengan **Vue 3 + Vite + Tailwind CSS v4 + GSAP + Lenis**. Kualitas visual setara Stripe, Vercel, Apple, Linear, Framer, dan Nvidia.
 
-![SKT CMS](public/logo.svg)
+![SKT CMS](public/logo.png)
 
 ---
 

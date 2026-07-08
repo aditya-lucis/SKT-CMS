@@ -1,44 +1,49 @@
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 
 /**
  * CountUp animation that triggers when the element enters the viewport.
- * Returns (target, ref) — attach ref to the element, target is final number.
+ * Returns { register }: call register(el, target, opts) -> a reactive ref
+ * that the template binds to (e.g. `{{ display }}`). Driving the displayed
+ * number through Vue state (instead of writing el.textContent directly)
+ * means the animation survives any re-render Vue does for unrelated
+ * reactive changes elsewhere in the component.
  */
 export function useCountUp() {
-  const refs = []
   let observer = null
+  const records = new Map() // el -> record
 
   const register = (el, target, opts = {}) => {
-    if (!el) return
-    refs.push({ el, target, opts, done: false })
+    const display = ref(0)
+    if (!el) return display
+
     if (!observer) {
       observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const rec = refs.find((r) => r.el === entry.target)
-            if (rec && !rec.done) {
-              rec.done = true
-              animate(rec)
-            }
+          const rec = records.get(entry.target)
+          if (rec && entry.isIntersecting && !rec.done) {
+            rec.done = true
+            animate(rec)
+            observer.unobserve(entry.target)
           }
         })
-      }, { threshold: 0.4 })
+      }, { threshold: 0.3 })
     }
+
+    records.set(el, { target, opts, display, done: false })
     observer.observe(el)
+    return display
   }
 
-  const animate = ({ el, target, opts }) => {
+  const animate = ({ target, opts, display }) => {
     const duration = opts.duration || 2200
     const decimals = opts.decimals || 0
-    const prefix = opts.prefix || ''
-    const suffix = opts.suffix || ''
     const start = performance.now()
     const step = (now) => {
       const p = Math.min((now - start) / duration, 1)
       // easeOutExpo
       const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p)
       const val = target * eased
-      el.textContent = prefix + val.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix
+      display.value = decimals ? Number(val.toFixed(decimals)) : Math.round(val)
       if (p < 1) requestAnimationFrame(step)
     }
     requestAnimationFrame(step)

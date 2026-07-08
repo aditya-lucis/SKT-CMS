@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, nextTick } from 'vue'
+import { ref, watch } from 'vue'
 import { Check, ArrowRight, Award } from 'lucide-vue-next'
 import { useCountUp } from '@/composables/useCountUp'
 import SectionHeading from '@/components/base/SectionHeading.vue'
@@ -12,14 +12,18 @@ const { state } = useSiteContent()
 const about = state.data.about
 
 const statRefs = ref([])
+const displayValues = ref([])
+
 // Stats arrive asynchronously from the CMS; register the count-up animation
-// once they land and the DOM for each stat card has rendered.
-watch(() => state.data.stats.length, async () => {
-  await nextTick()
+// once they land and the DOM for each stat card has rendered. flush:'post'
+// guarantees this runs after Vue has actually painted the new elements.
+watch(() => state.data.stats.length, () => {
   state.data.stats.forEach((s, i) => {
-    if (statRefs.value[i]) register(statRefs.value[i], s.value, { suffix: s.suffix, duration: 2400 })
+    if (statRefs.value[i]) {
+      displayValues.value[i] = register(statRefs.value[i], s.value, { duration: 2400 })
+    }
   })
-})
+}, { flush: 'post', immediate: true })
 </script>
 
 <template>
@@ -37,7 +41,7 @@ watch(() => state.data.stats.length, async () => {
           <div class="relative rounded-3xl overflow-hidden gradient-border shadow-glass-lg h-[400px] md:h-[440px]">
             <div class="absolute left-0 w-full will-change-transform" style="top: -10%; height: 120%;"
                  data-parallax data-parallax-speed="0.14" data-parallax-scale="1.1">
-              <img :src="resolveMediaUrl(about.office_image)" alt="SKT office" class="w-full h-full object-cover" loading="lazy" />
+              <img :src="resolveMediaUrl(about.office_image)" alt="Nexus Technology office" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 50%, rgba(5,48,99,0.4) 100%);"></div>
             <!-- Floating badge -->
@@ -104,7 +108,7 @@ watch(() => state.data.stats.length, async () => {
               <component :is="resolveIcon(s.icon)" :size="22" class="text-navy-700" />
             </div>
             <div :ref="el => statRefs[i] = el"
-                 class="font-display font-bold text-3xl md:text-4xl text-navy-700 tabular-nums">0</div>
+                 class="font-display font-bold text-3xl md:text-4xl text-navy-700 tabular-nums">{{ displayValues[i] ?? 0 }}{{ s.suffix }}</div>
             <div class="text-sm text-slate-500 mt-1">{{ s.label }}</div>
           </div>
         </div>

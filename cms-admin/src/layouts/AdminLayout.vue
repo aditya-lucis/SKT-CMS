@@ -8,7 +8,7 @@ import {
 import { useAuthStore } from '@/stores/auth'
 import { singletonConfigs } from '@/config/resourceConfigs'
 
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -50,6 +50,15 @@ function toggleDropdown(name) {
   openDropdown.value = openDropdown.value === name ? null : name
 }
 
+function handleDocClick(e) {
+  if (!e.target.closest('[data-dropdown-wrapper]')) {
+    openDropdown.value = null
+  }
+}
+
+onMounted(() => document.addEventListener('click', handleDocClick))
+onBeforeUnmount(() => document.removeEventListener('click', handleDocClick))
+
 function isActiveResource(key) {
   return route.name === 'resource' && route.params.resource === key
 }
@@ -61,11 +70,10 @@ function isActiveSection(key) {
 <template>
   <div class="min-h-screen flex flex-col bg-slate-50">
     <!-- Top Navbar -->
-    <header class="bg-white border-b">
+    <header class="fixed inset-x-0 top-0 z-40 bg-white border-b shadow-sm">
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center font-display font-bold text-sm"
-               style="background: linear-gradient(135deg, #46ad64, #22d3ee);">S</div>
+          <img src="/logo.png" alt="SKT" class="w-10 h-10 rounded-lg object-contain" />
           <div>
             <div class="font-display font-bold text-lg text-navy-900">SKT CMS</div>
             <div class="text-xs text-navy-500">Admin Panel</div>
@@ -77,13 +85,13 @@ function isActiveSection(key) {
                       class="px-3 py-2 text-sm font-medium text-navy-700 transition-colors"
                       :class="{ 'text-emerald-600 border-b-2 border-emerald-300': route.name === 'dashboard' }">Dashboard</RouterLink>
 
-          <div class="relative">
+          <div class="relative" data-dropdown-wrapper="content">
             <button @click="toggleDropdown('content')"
                     class="px-3 py-2 text-sm font-medium transition-colors"
                     :class="{ 'text-emerald-600 border-b-2 border-emerald-300': route.name === 'content' || openDropdown === 'content' }">
               Page Content
             </button>
-            <div v-show="openDropdown === 'content'" class="absolute left-0 mt-2 w-48 bg-white border rounded shadow-md p-2 z-50">
+            <div v-show="openDropdown === 'content'" class="absolute left-0 mt-2 w-48 bg-white border rounded shadow-md p-2 z-50" data-dropdown-wrapper="content">
               <RouterLink v-for="item in contentNav" :key="item.key"
                           :to="{ name: 'content', params: { section: item.key } }"
                           class="flex items-center gap-2 px-2 py-2 text-sm text-navy-700 hover:bg-slate-50 rounded">
@@ -92,13 +100,13 @@ function isActiveSection(key) {
             </div>
           </div>
 
-          <div class="relative">
+          <div class="relative" data-dropdown-wrapper="lists">
             <button @click="toggleDropdown('lists')"
                     class="px-3 py-2 text-sm font-medium transition-colors"
                     :class="{ 'text-emerald-600 border-b-2 border-emerald-300': route.name === 'resource' || openDropdown === 'lists' }">
               Content Lists
             </button>
-            <div v-show="openDropdown === 'lists'" class="absolute left-0 mt-2 w-56 bg-white border rounded shadow-md p-2 z-50">
+            <div v-show="openDropdown === 'lists'" class="absolute left-0 mt-2 w-56 bg-white border rounded shadow-md p-2 z-50" data-dropdown-wrapper="lists">
               <RouterLink v-for="item in resourceNav" :key="item.key"
                           :to="{ name: 'resource', params: { resource: item.key } }"
                           class="flex items-center gap-2 px-2 py-2 text-sm text-navy-700 hover:bg-slate-50 rounded">
@@ -142,7 +150,7 @@ function isActiveSection(key) {
     </header>
 
     <!-- Main content -->
-    <main class="flex-1 overflow-y-auto">
+    <main class="flex-1 overflow-y-auto pt-22">
       <div class="max-w-6xl mx-auto px-6 py-8">
         <RouterView />
       </div>
